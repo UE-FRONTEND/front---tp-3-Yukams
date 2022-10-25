@@ -18,6 +18,7 @@
 <script>
 export default {
   name: "NewMessage",
+  emits: ['messageSubmit'],
   data: function () {
     return {
       message: {

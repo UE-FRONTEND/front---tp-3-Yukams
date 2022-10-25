@@ -4,10 +4,10 @@
       <new-message @messageSubmit="storeMessage"/>
     </div>
     <div class="col">
-      <message-preview :messages="messages"></message-preview>
+      <message-preview :messages="messages" @selectMessage="seeMessageDetails"></message-preview>
     </div>
     <div class="col">
-      TODO ex 3
+      <message-detail :message="selected"></message-detail>
     </div>
   </div>
 </template>
@@ -15,12 +15,14 @@
 <script>
 import NewMessage from "./components/NewMessage";
 import MessagePreview from "./components/MessagePreview";
+import MessageDetail from "./components/MessageDetail";
 
 export default {
   name: 'App',
   components: {
     NewMessage,
-    MessagePreview
+    MessagePreview,
+    MessageDetail
   },
   data: function () {
     return {
@@ -39,6 +41,10 @@ export default {
           isRead: false
         }
       )
+    },
+    seeMessageDetails(message) {
+      message.isRead = true
+      this.selected = message;
     }
   }
 }

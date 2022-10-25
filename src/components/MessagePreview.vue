@@ -5,7 +5,7 @@
             <div>{{message.date.toLocaleDateString()}}</div>
             <div :class="message.isRead ? '' : 'bold'">{{message.title}}</div>
             <div>
-                <button @click="message.isRead = true">Voir</button>
+                <button @click="seeMessage(message)">Voir</button>
             </div>
         </div>
     </div>
@@ -17,8 +17,14 @@
 <script>
     export default {
         name: "MessagePreview",
+        emits: ['selectMessage'],
         props: {
             messages: null
+        },
+        methods: {
+            seeMessage(message) {
+                this.$emit('selectMessage', message);
+            }
         },
         computed: {
             messagesLength() {
