@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="col">
-      <new-message @messageSubmit="showMessage"/>
+      <new-message @messageSubmit="storeMessage"/>
     </div>
     <div class="col">
-      TODO ex 2
+      <message-preview :messages="messages"></message-preview>
     </div>
     <div class="col">
       TODO ex 3
@@ -14,11 +14,13 @@
 
 <script>
 import NewMessage from "./components/NewMessage";
+import MessagePreview from "./components/MessagePreview";
 
 export default {
   name: 'App',
   components: {
-    NewMessage
+    NewMessage,
+    MessagePreview
   },
   data: function () {
     return {
@@ -27,8 +29,16 @@ export default {
     }
   },
   methods: {
-    showMessage(message) {
-      console.log(message.title);
+    storeMessage(message) {
+      this.messages.push(
+        {
+          title: message.title,
+          content: message.content,
+          id: this.messages.length,
+          date: new Date(),
+          isRead: false
+        }
+      )
     }
   }
 }
