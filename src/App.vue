@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="col">
-      <new-message/>
+      <new-message @messageSubmit="showMessage"/>
     </div>
     <div class="col">
       TODO ex 2
@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import NewMessage from "@/components/NewMessage";
+import NewMessage from "./components/NewMessage";
 
 export default {
   name: 'App',
@@ -26,6 +26,11 @@ export default {
       selected: null
     }
   },
+  methods: {
+    showMessage(message) {
+      console.log(message.title);
+    }
+  }
 }
 </script>
 
